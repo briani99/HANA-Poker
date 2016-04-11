@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="CARDS" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <origin/>
+  <descriptions defaultDescription="Cards"/>
+  <metadata changedAt="2013-11-30 17:12:30.198" createdAt="2013-11-30 17:11:57.812"/>
+  <attributes>
+    <attribute id="CARD" key="true">
+      <descriptions defaultDescription="CARD"/>
+      <keyMapping schemaName="I027737" columnObjectName="CARDS" columnName="CARD"/>
+    </attribute>
+    <attribute id="CARDPID">
+      <descriptions defaultDescription="CARDPID"/>
+      <keyMapping schemaName="I027737" columnObjectName="CARDS" columnName="CARDPID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="I027737" columnObjectName="CARDS"/>
+      </tableProxy>
+    </tableProxies>
+    <joins/>
+    <layout>
+      <shapes>
+        <shape modelObjectName="CARDS" modelObjectNameSpace="I027737" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

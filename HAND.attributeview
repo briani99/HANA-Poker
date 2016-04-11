@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="HAND" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <origin/>
+  <descriptions defaultDescription="Hand Rank"/>
+  <metadata changedAt="2013-11-30 20:44:33.865" createdAt="2013-11-30 17:14:14.656"/>
+  <attributes>
+    <attribute id="RANK" hidden="false" displayAttribute="false" key="true">
+      <descriptions defaultDescription="RANK"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="RANK"/>
+    </attribute>
+    <attribute id="NOUNIQUE5" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="NOUNIQUE5"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="NOUNIQUE5"/>
+    </attribute>
+    <attribute id="C1" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="C1"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="C1"/>
+    </attribute>
+    <attribute id="C2" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="C2"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="C2"/>
+    </attribute>
+    <attribute id="C3" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="C3"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="C3"/>
+    </attribute>
+    <attribute id="C4" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="C4"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="C4"/>
+    </attribute>
+    <attribute id="C5" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="C5"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="C5"/>
+    </attribute>
+    <attribute id="ID" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="ID"/>
+    </attribute>
+    <attribute id="DESCRIPT" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="DESCRIPT"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="DESC"/>
+    </attribute>
+    <attribute id="FLUSH" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="FLUSH"/>
+      <keyMapping schemaName="I027737" columnObjectName="HANDRANK" columnName="FLUSH"/>
+    </attribute>
+    <attribute id="CARDPID" hidden="true" displayAttribute="false">
+      <descriptions defaultDescription="1st"/>
+      <keyMapping schemaName="I027737" columnObjectName="CARDS" columnName="CARDPID"/>
+    </attribute>
+    <attribute id="CARDPID_1" hidden="true" displayAttribute="false">
+      <descriptions defaultDescription="CARDPID_1"/>
+      <keyMapping schemaName="I027737" columnObjectName="CARDS" alias="2nd" columnName="CARDPID"/>
+    </attribute>
+    <attribute id="CARDPID_2" hidden="true" displayAttribute="false">
+      <descriptions defaultDescription="CARDPID_2"/>
+      <keyMapping schemaName="I027737" columnObjectName="CARDS" alias="3rd" columnName="CARDPID"/>
+    </attribute>
+    <attribute id="CARDPID_3" hidden="true" displayAttribute="false">
+      <descriptions defaultDescription="CARDPID_3"/>
+      <keyMapping schemaName="I027737" columnObjectName="CARDS" alias="4th" columnName="CARDPID"/>
+    </attribute>
+    <attribute id="CARDPID_4" hidden="true" displayAttribute="false">
+      <descriptions defaultDescription="CARDPID_4"/>
+      <keyMapping schemaName="I027737" columnObjectName="CARDS" alias="5th" columnName="CARDPID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="HANDPRIMEID" hidden="false" displayAttribute="false">
+      <descriptions defaultDescription="Hand Prime ID"/>
+      <keyCalculation datatype="DOUBLE" length="0" scale="0">
+        <formula>&quot;CARDPID&quot; * &quot;CARDPID_1&quot; * &quot;CARDPID_2&quot;* &quot;CARDPID_3&quot; * &quot;CARDPID_4&quot;</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="I027737" columnObjectName="HANDRANK"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="I027737" columnObjectName="CARDS"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="I027737" columnObjectName="CARDS" alias="2nd"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="I027737" columnObjectName="CARDS" alias="3rd"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="I027737" columnObjectName="CARDS" alias="5th"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="I027737" columnObjectName="CARDS" alias="4th"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="I027737" columnObjectName="HANDRANK"/>
+        <rightTable schemaName="I027737" columnObjectName="CARDS"/>
+        <leftColumns>
+          <columnName>C1</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>CARD</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="I027737" columnObjectName="HANDRANK"/>
+        <rightTable schemaName="I027737" columnObjectName="CARDS" alias="2nd"/>
+        <leftColumns>
+          <columnName>C2</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>CARD</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="I027737" columnObjectName="HANDRANK"/>
+        <rightTable schemaName="I027737" columnObjectName="CARDS" alias="3rd"/>
+        <leftColumns>
+          <columnName>C3</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>CARD</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="I027737" columnObjectName="HANDRANK"/>
+        <rightTable schemaName="I027737" columnObjectName="CARDS" alias="4th"/>
+        <leftColumns>
+          <columnName>C4</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>CARD</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="I027737" columnObjectName="HANDRANK"/>
+        <rightTable schemaName="I027737" columnObjectName="CARDS" alias="5th"/>
+        <leftColumns>
+          <columnName>C5</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>CARD</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="HANDRANK" modelObjectNameSpace="I027737" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+        <shape modelObjectName="CARDS" modelObjectNameSpace="I027737" modelObjectType="catalog">
+          <upperLeftCorner x="428" y="19"/>
+        </shape>
+        <shape modelObjectName="2nd" modelObjectType="catalog">
+          <upperLeftCorner x="427" y="125"/>
+        </shape>
+        <shape modelObjectName="3rd" modelObjectType="catalog">
+          <upperLeftCorner x="428" y="245"/>
+        </shape>
+        <shape modelObjectName="5th" modelObjectType="catalog">
+          <upperLeftCorner x="400" y="463"/>
+        </shape>
+        <shape modelObjectName="4th" modelObjectType="catalog">
+          <upperLeftCorner x="398" y="354"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="POSSHANDS" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" visibility="internal" calculationScenarioType="SCRIPT_BASED" dataCategory="DEFAULT" enforceSqlExecution="false" executionSemantic="UNDEFINED" runWithInvokerPrivileges="false" scriptParametersCaseSensitive="true">
+  <origin/>
+  <descriptions defaultDescription="Possible hands"/>
+  <defaultSchema schemaName="SYSTEM"/>
+  <localVariables>
+    <variable id="MYHANDPID" parameter="true">
+      <descriptions defaultDescription="My Hand Prime ID"/>
+      <variableProperties datatype="DOUBLE" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute datatype="CHAR" id="RANK" length="4"/>
+        <viewAttribute datatype="CHAR" id="C1" length="2"/>
+        <viewAttribute datatype="CHAR" id="C2" length="2"/>
+        <viewAttribute datatype="CHAR" id="C3" length="2"/>
+        <viewAttribute datatype="CHAR" id="C4" length="2"/>
+        <viewAttribute datatype="CHAR" id="C5" length="2"/>
+        <viewAttribute datatype="CHAR" id="DESCRIPT" length="20"/>
+        <viewAttribute datatype="DECIMAL" id="NOUNIQUE5" length="7" scale="1"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <localVariable>#MYHANDPID</localVariable>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+ 	 SELECT RANK, C1, C2, C3, C4, C5, DESCRIPT, NOUNIQUE5
+ 	 FROM
+ 	 &quot;_SYS_BIC&quot;.&quot;I027737.Poker/HAND&quot;
+ 	 WHERE
+ 	 (
+ 	 	MOD(HANDPRIMEID,MYHANDPID) = 0
+ 	 	OR
+ 	 	MOD(MYHANDPID,HANDPRIMEID) = 0
+ 	 )
+ 	 ORDER BY RANK;
+ 	 
+ 	 
+END /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="RANK" order="1">
+        <descriptions/>
+        <keyMapping columnObjectName="Script_View" columnName="RANK"/>
+      </attribute>
+      <attribute id="C1" order="2">
+        <descriptions/>
+        <keyMapping columnObjectName="Script_View" columnName="C1"/>
+      </attribute>
+      <attribute id="C2" order="3">
+        <descriptions/>
+        <keyMapping columnObjectName="Script_View" columnName="C2"/>
+      </attribute>
+      <attribute id="C3" order="4">
+        <descriptions/>
+        <keyMapping columnObjectName="Script_View" columnName="C3"/>
+      </attribute>
+      <attribute id="C4" order="5">
+        <descriptions/>
+        <keyMapping columnObjectName="Script_View" columnName="C4"/>
+      </attribute>
+      <attribute id="C5" order="6">
+        <descriptions/>
+        <keyMapping columnObjectName="Script_View" columnName="C5"/>
+      </attribute>
+      <attribute id="DESCRIPT" order="7">
+        <descriptions/>
+        <keyMapping columnObjectName="Script_View" columnName="DESCRIPT"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="NOUNIQUE5" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="NOUNIQUE5"/>
+        <measureMapping columnObjectName="Script_View" columnName="NOUNIQUE5"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>
